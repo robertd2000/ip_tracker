@@ -13,7 +13,9 @@ onMounted(() => {
 
   leaflet
     .tileLayer(
-      `https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}{retina}?access_token=pk.eyJ1IjoiYW5iZXJtIiwiYSI6ImNrYnJqNXVnaDJ3ejMyb214a2U4MXlkazkifQ.nsXT5HbJUuhQ6ECvR9i2Sw`,
+      `https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}{retina}?access_token=${
+        import.meta.env.VITE_API_KEY
+      }`,
       {
         attribution:
           'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -21,8 +23,7 @@ onMounted(() => {
         id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1,
-        accessToken:
-          'pk.eyJ1IjoiYW5iZXJtIiwiYSI6ImNrYnJqNXVnaDJ3ejMyb214a2U4MXlkazkifQ.nsXT5HbJUuhQ6ECvR9i2Sw',
+        accessToken: import.meta.env.VITE_API_KEY,
         retina: '@2x',
       }
     )
@@ -32,7 +33,9 @@ onMounted(() => {
 const getIpInfo = async () => {
   try {
     const data = await axios.get(
-      `https://geo.ipify.org/api/v1?apiKey=at_xoBXmnSfTpkiLDxTZhHmKBVA268zw&ipAddress=${queryIp.value}`
+      `https://geo.ipify.org/api/v1?apiKey=${
+        import.meta.env.VITE_IP_API_KEY
+      }&ipAddress=${queryIp.value}`
     )
 
     const result = data.data
